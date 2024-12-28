@@ -1,16 +1,13 @@
 {
-
     "pesquisarVeiculo": {
-        "global":"https://auto.sapo.pt/",
-        
-        "tests": [
+      "global": "https://auto.sapo.pt/",
+      "tests": [
         {
-            "filter": "BMW"
+          "filter": "BMW"
         },
         {
-            "filter": "Focus"
+          "filter": "Focus"
         }
-    ]
-    
+      ]
+    }
   }
-}
