@@ -1,19 +1,37 @@
-// @ts-check
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
 test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  const buttonRegister = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button')
+  const emailInput = page.locator('//*[@id="username"]')
+  let buttonContinue = page.locator('//*[@id="submit-username"]')
+  const validationCode = page.locator('//*[@id="token"]')
+  const gender = page.locator('//*[@id="registerGender"]/div[2]')
+  const acceptTerms = page.locator('//*[@id="terms"]')
+  const acceptCreatePassword = page.locator('//*[@id="content"]/div[3]/div[2]/a')
+  const password = page.locator('//*[@id="current-password"]')
+  const confirmPassword = page.locator('//*[@id="new-password"]')
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  await page.goto('https://auto.sapo.pt/');
+  buttonRegister.click()
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  emailInput.fill("goncaloos10@gmail.com")
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  buttonContinue.click()
+
+  validationCode.fill('asd')
+  gender.click()
+  acceptTerms.click()
+
+  buttonContinue = page.locator('//*[@id="btn-token-submit"]')
+  buttonContinue.click()
+
+  acceptCreatePassword.click()
+
+  password.fill('Passwordboa123!')
+  confirmPassword.fill('Passwordboa123!')
+
+  buttonContinue = page.locator('//*[@id="btn-add-password"]')
+  buttonContinue.click()
+
 });
