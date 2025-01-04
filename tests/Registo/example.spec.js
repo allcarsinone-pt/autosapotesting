@@ -1,37 +1,67 @@
 import { test, expect } from '@playwright/test';
+import { generate } from "generate-password";
+let context;
+let page;
 
-test('has title', async ({ page }) => {
+var passwordValue = generate({
+  length: 10,
+  numbers: true,
+  symbols: true,
+  uppercase: true,
+  lowercase: true
+})
 
-  const buttonRegister = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button')
-  const emailInput = page.locator('//*[@id="username"]')
-  let buttonContinue = page.locator('//*[@id="submit-username"]')
-  const validationCode = page.locator('//*[@id="token"]')
-  const gender = page.locator('//*[@id="registerGender"]/div[2]')
-  const acceptTerms = page.locator('//*[@id="terms"]')
-  const acceptCreatePassword = page.locator('//*[@id="content"]/div[3]/div[2]/a')
-  const password = page.locator('//*[@id="current-password"]')
-  const confirmPassword = page.locator('//*[@id="new-password"]')
+test('should register a user', async ({ browser }) => {
+  context = await browser.newContext();
+  page = await context.newPage();
+  await page.goto("https://auto.sapo.pt/");
+  await page.waitForTimeout(10000);
 
-  await page.goto('https://auto.sapo.pt/');
-  buttonRegister.click()
+  const cookieScreen = page.locator('//*[@id="qc-cmp2-ui"]');
+  if (await cookieScreen.isVisible()) {
+    const acceptCookies = page.locator('//*[@id="qc-cmp2-ui"]/div[2]/div/button[3]');
+    await acceptCookies.click();
+  }
 
-  emailInput.fill("goncaloos10@gmail.com")
+  const buttonRegister = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button');
+  if (await buttonRegister.isVisible()) {
+    await buttonRegister.click();
+  }
 
-  buttonContinue.click()
+  const emailInput = page.locator('//*[@id="username"]');
+  await emailInput.fill("grandiosoteixas2002@gmail.com");
 
-  validationCode.fill('asd')
-  gender.click()
-  acceptTerms.click()
+  let buttonContinue = page.locator('//*[@id="submit-username"]');
+  await buttonContinue.click();
 
-  buttonContinue = page.locator('//*[@id="btn-token-submit"]')
-  buttonContinue.click()
+  if (await page.locator('//*[@id="/html/body/div[1]/div[1]/div/div/div/form/div"]').isVisible()) {
+    await page.pause();
+  }
 
-  acceptCreatePassword.click()
+  const gender = page.locator('//*[@id="registerGender"]/div[2]');
+  const acceptTerms = page.locator('//*[@id="terms"]');
 
-  password.fill('Passwordboa123!')
-  confirmPassword.fill('Passwordboa123!')
+  await page.pause();
+  await gender.click();
+  await acceptTerms.click();
 
-  buttonContinue = page.locator('//*[@id="btn-add-password"]')
-  buttonContinue.click()
+  buttonContinue = page.locator('//*[@id="btn-token-submit"]');
+  await page.waitForTimeout(3000);
+  await buttonContinue.click();
 
+  const acceptCreatePassword = page.locator('//*[@id="content"]/div[3]/div[2]/a');
+  await acceptCreatePassword.click();
+
+  const password = page.locator('//*[@id="current-password"]');
+  const confirmPassword = page.locator('//*[@id="new-password"]');
+
+  await password.fill(passwordValue);
+  await confirmPassword.fill(passwordValue);
+
+  console.log(passwordValue);
+
+  buttonContinue = page.locator('//*[@id="btn-add-password"]');
+  await buttonContinue.click();
+
+  await page.goto("https://auto.sapo.pt/");
 });
