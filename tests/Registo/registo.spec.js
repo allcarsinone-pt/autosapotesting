@@ -11,7 +11,8 @@ var passwordValue = generate({
   lowercase: true
 })
 
-test('should register a user', async ({ browser }) => {
+test('should register an user', async ({ browser }) => {
+
   context = await browser.newContext();
   page = await context.newPage();
   await page.goto("https://auto.sapo.pt/");
@@ -29,7 +30,8 @@ test('should register a user', async ({ browser }) => {
   }
 
   const emailInput = page.locator('//*[@id="username"]');
-  await emailInput.fill("grandiosoteixas2002@gmail.com");
+  const emailRegister = "grandiosoteixas2002@gmail.com";
+  await emailInput.fill(emailRegister);
 
   let buttonContinue = page.locator('//*[@id="submit-username"]');
   await buttonContinue.click();
@@ -40,6 +42,12 @@ test('should register a user', async ({ browser }) => {
 
   const gender = page.locator('//*[@id="registerGender"]/div[2]');
   const acceptTerms = page.locator('//*[@id="terms"]');
+
+  // Verificar abordagem
+  if (!(await gender.isVisible())) {
+    console.log("Email already registered");
+    await context.close();
+  }
 
   await page.pause();
   await gender.click();
@@ -64,4 +72,12 @@ test('should register a user', async ({ browser }) => {
   await buttonContinue.click();
 
   await page.goto("https://auto.sapo.pt/");
+
+  const isLoggedIn = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/div/span');
+
+  const emailText = await isLoggedIn.textContent();
+  expect(emailText).toContain('Olá');
+
+  await context.close();
+
 });
