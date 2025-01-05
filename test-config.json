@@ -1,0 +1,24 @@
+{
+    "pesquisarVeiculo": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "filter": "BMW"
+            },
+            {
+                "filter": "Focus"
+            }
+        ]
+    },
+    "registarUtilizador": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "email": "grandiosoteixas2002@gmail.com"
+            },
+            {
+                "filter": "Focus"
+            }
+        ]
+    }
+}
