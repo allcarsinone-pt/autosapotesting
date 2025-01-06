@@ -12,6 +12,8 @@
     "@types/node": "^22.10.1"
   },
   "dependencies": {
-    "generate-password": "^1.7.1"
+    "crypto-random-string": "^5.0.0",
+    "generate-password": "^1.7.1",
+    "randomstring": "^1.3.0"
   }
 }

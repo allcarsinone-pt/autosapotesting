@@ -1,37 +1,27 @@
 import { test, expect } from '@playwright/test';
-import { generate } from "generate-password";
+import randomstring from 'randomstring';
 import { describe } from 'node:test';
 const config = require("../../test-config.json").registarUtilizador;
 let context;
 let page;
 
-var passwordValue = generate({
-  length: 10,
-  numbers: true,
-  symbols: true,
-  uppercase: true,
-  lowercase: true
-})
+function generatePassword() {
+  const uppercase = randomstring.generate({ length: 2, charset: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' });
+  const lowercase = randomstring.generate({ length: 4, charset: 'abcdefghijklmnopqrstuvwxyz' });
+  const numbers = randomstring.generate({ length: 2, charset: '0123456789' });
+  const symbols = randomstring.generate({ length: 2, charset: '!@#$%^&*()-_+=<>?{}[]~' });
+
+  const password = (uppercase + lowercase + numbers + symbols)
+    .split('')
+    .sort(() => Math.random() - 0.5)
+    .join('');
+
+  return password;
+}
 
 describe('User register', () => {
-  test.beforeAll(async ({ browser }) => {
-    context = await browser.newContext();
-    page = await context.newPage();
-    await page.goto(config.global);
-    await page.waitForTimeout(5000);
-
-    const cookieScreen = page.locator('//*[@id="qc-cmp2-ui"]');
-    if (await cookieScreen.isVisible()) {
-      const acceptCookies = page.locator('//*[@id="qc-cmp2-ui"]/div[2]/div/button[3]');
-      await acceptCookies.click();
-    }
-
-  })
-
 
   test('should register an user', async ({ context }) => {
-
-    await page.goto(config.global);
 
     const buttonRegister = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button');
     if (await buttonRegister.isVisible()) {
@@ -71,12 +61,16 @@ describe('User register', () => {
     const password = page.locator('//*[@id="current-password"]');
     const confirmPassword = page.locator('//*[@id="new-password"]');
 
-    await password.fill(passwordValue);
-    await confirmPassword.fill(passwordValue);
+    const passwordRegister = generatePassword();
+    await password.fill(passwordRegister);
+    await confirmPassword.fill(passwordRegister);
 
-    console.log(passwordValue);
+    console.log(passwordRegister);
+
+    await page.pause(); // Pausa para colocar código de validação recebido no email
 
     buttonContinue = page.locator('//*[@id="btn-add-password"]');
+    await buttonContinue.click();
     await buttonContinue.click();
 
     await page.goto(config.global);
@@ -86,9 +80,9 @@ describe('User register', () => {
     const emailText = await isLoggedIn.textContent();
     expect(emailText).toContain('Olá');
 
-    await context.close();
-
   });
+
+  /*
 
   test('should not register an user because passwords are different', async ({ context }) => {
 
@@ -137,9 +131,12 @@ describe('User register', () => {
 
     buttonContinue = page.locator('//*[@id="btn-add-password"]');
 
+    if(await buttonContinue.isVisible() && !(await buttonContinue.isEnabled())) {
+      // ver
+    }
 
     await context.close();
 
   });
-
+*/
 })

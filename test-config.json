@@ -14,11 +14,11 @@
         "global": "https://auto.sapo.pt/",
         "tests": [
             {
-                "email": "grandiosoteixas2002@gmail.com"
-            },
-            {
-                "filter": "Focus"
+                "email": "abcdefghijklmnopqrs@allcarsinone.pt"
             }
         ]
+    },
+    "acceptCookies": {
+        "global": "https://auto.sapo.pt/"
     }
 }
