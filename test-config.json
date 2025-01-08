@@ -1,0 +1,32 @@
+{
+    "pesquisarVeiculo": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "filter": "BMW"
+            },
+            {
+                "filter": "Focus"
+            }
+        ]
+    },
+    "registarUtilizador": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "email": "abcdefghijklmnopqrs@allcarsinone.pt"
+            }
+        ]
+    },
+    "loginUtilizador": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "email": "pauloestevao@gmail.com"
+            }
+        ]
+    },
+    "acceptCookies": {
+        "global": "https://auto.sapo.pt/"
+    }
+}
