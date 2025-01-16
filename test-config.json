@@ -14,7 +14,23 @@
         "global": "https://auto.sapo.pt/",
         "tests": [
             {
-                "email": "abcdefghijklmnopqrs@allcarsinone.pt"
+                "email": "goncalo4@allcarsinone.pt"
+            },
+            {
+                "email": "goncalo5@allcarsinone.pt"
+            },
+            {
+                "email": "goncalo6@allcarsinone.pt"
+            },
+            {
+                "nif": "291099955",
+                "mobile": "912345678",
+                "billingAddress": "Rua do teste",
+                "postalCode1": 4750,
+                "postalCode2": 115,
+                "locality": "Barcelos",
+                "district": 3,
+                "municipality": 2
             }
         ]
     },
