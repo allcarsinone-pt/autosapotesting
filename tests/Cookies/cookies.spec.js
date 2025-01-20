@@ -7,8 +7,8 @@ let page;
 
 export default function acceptCookies() {
     describe('Accept Cookies', () => {
-        test('accept cookies', async ({ browser }) => {
-            context = await browser.newContext();
+        test('accept cookies', async ({ context }) => {
+
             page = await context.newPage();
             await page.goto(config.global);
             await page.waitForTimeout(5000);

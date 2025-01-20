@@ -22,8 +22,7 @@ function generatePassword() {
 export default function registarUtilizador() {
   describe('User register', () => {
 
-    test('should register an user', async ({ browser }) => {
-      context = await browser.newContext();
+    test('should register an user', async ({ context }) => {
       page = await context.newPage();
       await page.goto(config.global);
       await page.waitForTimeout(5000);
@@ -220,7 +219,7 @@ export default function registarUtilizador() {
 
     });
 
-    test('should register a seller', async ({ context }) => {
+    test('should register an user as a seller', async ({ context }) => {
 
       await page.goto(config.global);
 
