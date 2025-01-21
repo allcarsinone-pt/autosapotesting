@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import randomstring from 'randomstring';
 import { describe } from 'node:test';
 import { url } from 'inspector';
-const config = require("../../test-config.json").registarUtilizador;
+const config = require("../test-config.json").registarUtilizador;
 let page, context;
 
 function generatePassword() {

@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import randomstring from 'randomstring';
+import { test, expect } from '@playwright/test'
 import { describe } from 'node:test';
 const config = require("../../test-config.json").acceptCookies;
 let context;
