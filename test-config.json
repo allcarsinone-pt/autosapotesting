@@ -1,13 +1,68 @@
 {
     "pesquisarVeiculo": {
-      "global": "https://auto.sapo.pt/",
-      "tests": [
-        {
-          "filter": "BMW"
-        },
-        {
-          "filter": "Focus"
-        }
-      ]
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "filter": "BMW"
+            },
+            {
+                "filter": "Focus"
+            }
+        ]
+    },
+    "registarUtilizador": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "email": "goncalo4@allcarsinone.pt"
+            },
+            {
+                "email": "goncalo5@allcarsinone.pt"
+            },
+            {
+                "email": "goncalo6@allcarsinone.pt"
+            },
+            {
+                "nif": "291099955",
+                "mobile": "912345678",
+                "billingAddress": "Rua do teste",
+                "postalCode1": 4750,
+                "postalCode2": 115,
+                "locality": "Barcelos",
+                "district": 3,
+                "municipality": 2
+            }
+        ]
+    },
+    "createAdvertisement": {
+        "global": "https://auto-frontoffice.sapo.pt/dashboard",
+        "tests": [
+            {
+                "matricula": "10-AA-15",
+                "vin": "WDB2011221F972132",
+                "brand": 4,
+                "model": 40,
+                "version": 3752,
+                "bodyType": 4,
+                "fuel": 2,
+                "transmission": 1,
+                "hp": 2000,
+                "cc": 500,
+                "doors": 5,
+                "seats": 5,
+                "color": 5,
+                "productionYear": 2020,
+                "plateDate": "2020-12-12",
+                "security": "ABS",
+                "aditional": "Airbag",
+                "kms": 50000,
+                "preco": 100000,
+                "description": "Em boas condições",
+                "salespoint": "Barcelos"
+            }
+        ]
+    },
+    "acceptCookies": {
+        "global": "https://auto.sapo.pt/"
     }
-  }
+}

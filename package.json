@@ -12,5 +12,10 @@
   "devDependencies": {
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.10.1"
+  },
+  "dependencies": {
+    "crypto-random-string": "^5.0.0",
+    "generate-password": "^1.7.1",
+    "randomstring": "^1.3.0"
   }
 }
