@@ -22,35 +22,48 @@ async function searchSimple(url, page, filter, xpath) {
         return { count: sanitizedText, results: resultsCarXPath}
 }
 
-export function searchTests() {
+export function searchTests(cookies) {
     describe("Simple Search", () => {
+
+        test.use({ storageState: 'cookies.json' });
     
-        test("should return a list of cars with some brand", async ({page}) => {
+        test("should return a list of cars with some brand", async ({context}) => {
+            
+            const page = await context.newPage()
             const result = await searchSimple(config.global,page, config.tests[0].filter, '//article[@class="vehicle-card"]//h3[@itemprop="name"]/a')
             expect(result.count).toBeGreaterThan(0)
             const found = result.results.every((value) => value.includes(config.tests[0].filter))
             expect(found).toBe(true)
+            await page.close()
     
     
         })
-        test("should return a list of cars with some model", async ({page}) => {
+        test("should return a list of cars with some model", async ({context}) => {
+            
+            const page = await context.newPage()
             const result = await searchSimple(config.global,page, config.tests[1].filter, '//article[@class="vehicle-card"]//h3[@itemprop="name"]/a')
             expect(result.count).toBeGreaterThan(0)
             const found = result.results.every((value) => value.includes(config.tests[1].filter))
             expect(found).toBe(true)
+            await page.close()
     
     
         })
 
-        test("should not return a list of car if car doesn't exist", async ({page}) => {
+        test("should not return a list of car if car doesn't exist", async ({context}) => {
+            
+            const page = await context.newPage()
             const result = await searchSimple(config.global,page, config.tests[2].filter, '//article[@class="vehicle-card"]//h3[@itemprop="name"]/a')
             expect(result.count).toBe(0)
             console.log(result)
             const found = result.results.length !== 0
             expect(found).toBe(false)
+            await page.close()
         })
 
-        test("should return a list of car with some name with fuel type filter", async ({page}) => {
+        test("should return a list of car with some name with fuel type filter", async ({context}) => {
+            
+            const page = await context.newPage()
             let result
             await page.goto(config.global)
             
@@ -86,25 +99,30 @@ export function searchTests() {
             expect(result.count).toBeGreaterThan(0)
             const found = result.results.every((value) => value.includes(config.tests[3].filter))
             expect(found).toBe(true)
+            await page.close()
         })
-        test("should return a list of car with some name and with a price filter", async ({page}) => {
+        test("should return a list of car with some name and with a price filter", async ({context}) => {
+            
+            const page = await context.newPage()
             let result
             await page.goto(config.global)
             
             const linkToPesquisaAvancada = page.locator('//*[@id="home"]/section[1]/div/div/div/div[3]/div/div[2]/a')
             await linkToPesquisaAvancada.click()
-            const buttonDropdownCombustivel = page.locator('//*[@id="used-search-filter"]/div/div[2]/div[2]/div/div[5]/div/div/button')
-            await buttonDropdownCombustivel.click()
 
             const filtroDePrecoDe =  page.locator('//*[@id="priceStart"]')
             const filtroDePrecoAte = page.locator('//*[@id="priceEnd"]')
 
+
             await filtroDePrecoDe.focus()
+            await page.waitForTimeout(2000)
             await filtroDePrecoDe.fill(config.tests[4].de)
 
-            await filtroDePrecoDe.press("Tab")
+            
+            
 
             await filtroDePrecoAte.focus()
+            await page.waitForTimeout(2000)
             await filtroDePrecoAte.fill(config.tests[4].ate)
             await filtroDePrecoAte.press("Tab")
             const nameTextBox = page.locator('//*[@id="searchTerm"]')
@@ -132,36 +150,39 @@ export function searchTests() {
             expect(result.count).toBeGreaterThan(0)
             const found = result.results.every((value) => value.includes(config.tests[4].filter))
             expect(found).toBe(true)
+            await page.close()
         
         })
 
-        test("should not return a list of car with some name and with a price filter if from filter is greater than to filter", async ({page}) => {
+        test("should not return a list of car with some name and with a price filter if from filter is greater than to filter", async ({context}) => {
+            
+            const page = await context.newPage()
             let result
             await page.goto(config.global)
             
             const linkToPesquisaAvancada = page.locator('//*[@id="home"]/section[1]/div/div/div/div[3]/div/div[2]/a')
             await linkToPesquisaAvancada.click()
-            const buttonDropdownCombustivel = page.locator('//*[@id="used-search-filter"]/div/div[2]/div[2]/div/div[5]/div/div/button')
-            await buttonDropdownCombustivel.click()
 
             const filtroDePrecoDe =  page.locator('//*[@id="priceStart"]')
             const filtroDePrecoAte = page.locator('//*[@id="priceEnd"]')
 
             await filtroDePrecoDe.focus()
+            console.log(config.tests[5])
+            await page.waitForTimeout(2000)
             await filtroDePrecoDe.fill(config.tests[5].de)
-
-            await filtroDePrecoDe.press("Tab")
-
+            
             await filtroDePrecoAte.focus()
             await filtroDePrecoAte.fill(config.tests[5].ate)
-            await filtroDePrecoAte.press("Tab")
+            
             const nameTextBox = page.locator('//*[@id="searchTerm"]')
             await nameTextBox.focus()
+            await page.waitForTimeout(2000)
             await nameTextBox.fill(config.tests[5].filter)
             const searchUsedButtom = page.locator('//*[@id="used-search-filter"]/div/div[2]/div[2]/div/div[12]/a[4]')
+            await page.waitForTimeout(2000)
             await searchUsedButtom.click()
             
-            const resultsXPath = await page.locator(`//*[@id="search"]/form/section[2]/div/div[1]/div[1]/h2`)
+            const resultsXPath = page.locator(`//*[@id="search"]/form/section[2]/div/div[1]/div[1]/h2`)
             await page.waitForTimeout(2000)
             const text = await resultsXPath.textContent()
             const sanitizedText = parseInt(text.replace("<strong>", "").replace("</strong>","").split()[0])
@@ -171,7 +192,7 @@ export function searchTests() {
             }
             else {
             const carXPath = '//article[@class="vehicle-card"]//h3[@itemprop="name"]/a'
-            const resultsCarXPath = (await page.locator(carXPath).allTextContents())
+            const resultsCarXPath = await page.locator(carXPath).allTextContents()
 
             result = { count: sanitizedText, results: resultsCarXPath}
 
@@ -179,14 +200,17 @@ export function searchTests() {
             }
             expect(result.count).toBe(0)
 
-            const pesquisaSemResultadosLabel = page.locator('//*[@id="no-results"]/div/h3')
-            expect(pesquisaSemResultadosLabel).toContainText('Pesquisa sem resultados')
+            await page.waitForTimeout(2000)
+            const pesquisaSemResultadosLabel = await ( page.locator('//*[@id="no-results"]/div/h3')).textContent()
+            expect(pesquisaSemResultadosLabel).toBe("Pesquisa sem resultados")
+            await page.close()
         
         })
 
-        test("should not return a list of car with some name and with a price filter if from filter is 0 and to filter is 0", async ({page}) => {
+        test("should not return a list of car with some name and with a price filter if from filter is 0 and to filter is 0", async ({context}) => {
             
             //AVISO: este teste é suposto falhar
+            const page = await context.newPage()
             let result
             await page.goto(config.global)
             
@@ -232,12 +256,14 @@ export function searchTests() {
 
             const pesquisaSemResultadosLabel = page.locator('//*[@id="no-results"]/div/h3')
             expect(pesquisaSemResultadosLabel).toContainText('Pesquisa sem resultados')
+            await page.close()
         
         })
 
-        test("should not return a list of car with some name and with a price filter if from filter is -2 and to filter is -1", async ({page}) => {
+        test("should not return a list of car with some name and with a price filter if from filter is -2 and to filter is -1", async ({context}) => {
             
             //AVISO: este teste é suposto falhar
+            const page = await context.newPage()
             let result
             await page.goto(config.global)
             
@@ -283,6 +309,7 @@ export function searchTests() {
 
             const pesquisaSemResultadosLabel = page.locator('//*[@id="no-results"]/div/h3')
             expect(pesquisaSemResultadosLabel).toContainText('Pesquisa sem resultados')
+            await page.close()
         
         })
         
