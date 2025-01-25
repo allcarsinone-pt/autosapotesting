@@ -7,6 +7,33 @@
             },
             {
                 "filter": "Focus"
+            },
+            {
+                "filter": "example"
+            },
+            {
+                "filter": "Ford Focus",
+                "fuel": "//*[@id=\"bs-select-3-2\"]"
+            },
+            {
+                "filter": "Ford Focus",
+                "de": "12000",
+                "ate": "20000"
+            },
+            {
+                "filter": "Ford Focus",
+                "de": "200000",
+                "ate": "120000"
+            },
+            {
+                "filter": "Ford Focus",
+                "de": "0",
+                "ate": "0"
+            },
+            {
+                "filter": "Ford Focus",
+                "de": "-2",
+                "ate": "-1"
             }
         ]
     },
@@ -102,6 +129,17 @@
                 "price": 66300,
                 "description": "Carro como novo sem nenhum problema.",
                 "salespoint": "Barcelos"
+            }
+        ]
+    },
+    "contactVendor": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "kmsStart": "28759",
+                "name": "Zé Manel",
+                "email": "zemanel@gmail.com",
+                "phone": "912345678"
             }
         ]
     },
