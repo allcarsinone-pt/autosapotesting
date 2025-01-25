@@ -14,6 +14,7 @@ module.exports = defineConfig({
   testDir: './tests',
   workers: 1,
   testMatch: 'test.list.js',
+  maxFailures: 9999999,
   /* Run tests in files in parallel */
   // fullyParallel: true,
   // /* Fail the build on CI if you accidentally left test.only in the source code. */

@@ -22,7 +22,7 @@ async function searchSimple(url, page, filter, xpath) {
         return { count: sanitizedText, results: resultsCarXPath}
 }
 
-export function searchTests(cookies) {
+export default function searchTests() {
     describe("Simple Search", () => {
 
         test.use({ storageState: 'cookies.json' });
@@ -35,8 +35,6 @@ export function searchTests(cookies) {
             const found = result.results.every((value) => value.includes(config.tests[0].filter))
             expect(found).toBe(true)
             await page.close()
-    
-    
         })
         test("should return a list of cars with some model", async ({context}) => {
             
@@ -46,8 +44,6 @@ export function searchTests(cookies) {
             const found = result.results.every((value) => value.includes(config.tests[1].filter))
             expect(found).toBe(true)
             await page.close()
-    
-    
         })
 
         test("should not return a list of car if car doesn't exist", async ({context}) => {
@@ -101,6 +97,8 @@ export function searchTests(cookies) {
             expect(found).toBe(true)
             await page.close()
         })
+        
+        //Aplicação de técnicas de valor fronteira e equivalência
         test("should return a list of car with some name and with a price filter", async ({context}) => {
             
             const page = await context.newPage()
@@ -113,13 +111,9 @@ export function searchTests(cookies) {
             const filtroDePrecoDe =  page.locator('//*[@id="priceStart"]')
             const filtroDePrecoAte = page.locator('//*[@id="priceEnd"]')
 
-
             await filtroDePrecoDe.focus()
             await page.waitForTimeout(2000)
             await filtroDePrecoDe.fill(config.tests[4].de)
-
-            
-            
 
             await filtroDePrecoAte.focus()
             await page.waitForTimeout(2000)
@@ -272,6 +266,8 @@ export function searchTests(cookies) {
             const buttonDropdownCombustivel = page.locator('//*[@id="used-search-filter"]/div/div[2]/div[2]/div/div[5]/div/div/button')
             await buttonDropdownCombustivel.click()
 
+			//Aplicação de técnica de valor fronteira
+
             const filtroDePrecoDe =  page.locator('//*[@id="priceStart"]')
             const filtroDePrecoAte = page.locator('//*[@id="priceEnd"]')
 
@@ -312,7 +308,6 @@ export function searchTests(cookies) {
             await page.close()
         
         })
-        
     })
 }
 

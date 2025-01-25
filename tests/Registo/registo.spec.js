@@ -21,6 +21,8 @@ function generatePassword() {
 
 export default function registarUtilizador() {
   describe('User register', () => {
+  
+	test.use({ storageState: 'cookies.json' });
 
     test('should register an user', async ({ context }) => {
       page = await context.newPage();
