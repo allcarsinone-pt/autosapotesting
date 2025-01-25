@@ -38,7 +38,7 @@
         "global": "https://auto.sapo.pt/",
         "tests": [
             {
-                "matricula": "10-AA-15",
+                "matricula": "32-31-MB",
                 "vin": "WDB2011221F972132",
                 "brand": 4,
                 "model": 40,
@@ -51,17 +51,16 @@
                 "doors": 5,
                 "seats": 5,
                 "color": 5,
-                "productionYear": 2020,
-                "plateDate": "2020-12-12",
+                "productionYear": 2022,
+                "plateDate": "2022-12-12",
                 "security": "ABS",
-                "aditional": "Airbag",
                 "kms": 50000,
-                "preco": 100000,
+                "price": 100000,
                 "description": "Em boas condições",
                 "salespoint": "Barcelos"
             },
             {
-                "matricula": "CE-14-BD",
+                "matricula": "90-MD-24",
                 "vin": "WDB2011221F972131",
                 "brand": 10,
                 "model": 124,
@@ -79,13 +78,13 @@
                 "security": "ABS",
                 "aditional": "Jantes de liga leve",
                 "kms": 8000,
-                "preco": 37000,
+                "price": 37000,
                 "description": "Carro com boa autonomia e revisões feitas na marca.",
                 "salespoint": "Barcelos"
             },
             {
-                "matricula": "10-ML-38",
-                "vin": "WDB2011221F973132",
+                "matricula": "92-MD-48",
+                "vin": "WDB2011221F872131",
                 "brand": 234,
                 "model": 2071,
                 "version": 75781,
@@ -97,11 +96,11 @@
                 "doors": 5,
                 "seats": 5,
                 "color": 1,
-                "productionYear": 2024,
-                "plateDate": "2020-12-12",
-                "kms": 50000,
-                "preco": 100000,
-                "description": "Em boas condições",
+                "productionYear": 2025,
+                "plateDate": "2025-01-01",
+                "kms": 3500,
+                "price": 66300,
+                "description": "Carro como novo sem nenhum problema.",
                 "salespoint": "Barcelos"
             }
         ]
