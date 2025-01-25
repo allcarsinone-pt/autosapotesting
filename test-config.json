@@ -1,0 +1,149 @@
+{
+    "pesquisarVeiculo": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "filter": "BMW"
+            },
+            {
+                "filter": "Focus"
+            },
+            {
+                "filter": "example"
+            },
+            {
+                "filter": "Ford Focus",
+                "fuel": "//*[@id=\"bs-select-3-2\"]"
+            },
+            {
+                "filter": "Ford Focus",
+                "de": "12000",
+                "ate": "20000"
+            },
+            {
+                "filter": "Ford Focus",
+                "de": "200000",
+                "ate": "120000"
+            },
+            {
+                "filter": "Ford Focus",
+                "de": "0",
+                "ate": "0"
+            },
+            {
+                "filter": "Ford Focus",
+                "de": "-2",
+                "ate": "-1"
+            }
+        ]
+    },
+    "registarUtilizador": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "email": "goncalo4@allcarsinone.pt"
+            },
+            {
+                "email": "goncalo5@allcarsinone.pt"
+            },
+            {
+                "email": "goncalo6@allcarsinone.pt"
+            },
+            {
+                "nif": "291099955",
+                "mobile": "912345678",
+                "billingAddress": "Rua do teste",
+                "postalCode1": 4750,
+                "postalCode2": 115,
+                "locality": "Barcelos",
+                "district": 3,
+                "municipality": 2
+            }
+        ]
+    },
+    "createAdvertisement": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "matricula": "32-31-MB",
+                "vin": "WDB2011221F972132",
+                "brand": 4,
+                "model": 40,
+                "version": 3752,
+                "bodyType": 4,
+                "fuel": 2,
+                "transmission": 1,
+                "hp": 2000,
+                "cc": 500,
+                "doors": 5,
+                "seats": 5,
+                "color": 5,
+                "productionYear": 2022,
+                "plateDate": "2022-12-12",
+                "security": "ABS",
+                "kms": 50000,
+                "price": 100000,
+                "description": "Em boas condições",
+                "salespoint": "Barcelos"
+            },
+            {
+                "matricula": "90-MD-24",
+                "vin": "WDB2011221F972131",
+                "brand": 10,
+                "model": 124,
+                "version": 13969,
+                "bodyType": 12,
+                "fuel": 4,
+                "transmission": 2,
+                "hp": 230,
+                "cc": 1800,
+                "doors": 5,
+                "seats": 5,
+                "color": 8,
+                "productionYear": 2024,
+                "plateDate": "2024-03-11",
+                "security": "ABS",
+                "aditional": "Jantes de liga leve",
+                "kms": 8000,
+                "price": 37000,
+                "description": "Carro com boa autonomia e revisões feitas na marca.",
+                "salespoint": "Barcelos"
+            },
+            {
+                "matricula": "92-MD-48",
+                "vin": "WDB2011221F872131",
+                "brand": 234,
+                "model": 2071,
+                "version": 75781,
+                "bodyType": 13,
+                "fuel": 5,
+                "transmission": 2,
+                "hp": 300,
+                "cc": 1000,
+                "doors": 5,
+                "seats": 5,
+                "color": 1,
+                "productionYear": 2025,
+                "plateDate": "2025-01-01",
+                "kms": 3500,
+                "price": 66300,
+                "description": "Carro como novo sem nenhum problema.",
+                "salespoint": "Barcelos"
+            }
+        ]
+    },
+    "contactVendor": {
+        "global": "https://auto.sapo.pt/",
+        "tests": [
+            {
+                "kmsStart": "28759",
+                "name": "Zé Manel",
+                "email": "zemanel@gmail.com",
+                "phone": "912345678"
+            }
+        ]
+    },
+    "acceptCookies": {
+        "global": "https://auto.sapo.pt/"
+    }
+}
