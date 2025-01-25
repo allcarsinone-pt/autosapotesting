@@ -61,10 +61,10 @@ test.describe('Contact Vendor Form Tests', () => {
     //const retomaBtn = page.locator('//*[@id="name"]')
     //await retomaBtn.click()
 
-    //const human = page.locator('//*[@id="content"]')
-    //if (human.isVisible()) {
-    //    await page.pause();
-    //}
+    const human = page.locator('//*[@id="content"]')
+    if (human.isVisible()) {
+        await page.pause();
+    }
 
     const submitBtn = page.locator('//*[@id="detail"]/div[1]/div/div/form/div/section[1]/div/div[2]/div/div/div/button')
     await submitBtn.click()
