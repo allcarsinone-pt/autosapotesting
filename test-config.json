@@ -41,7 +41,7 @@
         "global": "https://auto.sapo.pt/",
         "tests": [
             {
-                "email": "goncalo4@allcarsinone.pt"
+                "email": "qts7@allcarsinone.pt"
             },
             {
                 "email": "goncalo5@allcarsinone.pt"
@@ -56,8 +56,8 @@
                 "postalCode1": 4750,
                 "postalCode2": 115,
                 "locality": "Barcelos",
-                "district": 3,
-                "municipality": 2
+                "district": "3",
+                "municipality": "2"
             }
         ]
     },
@@ -145,5 +145,10 @@
     },
     "acceptCookies": {
         "global": "https://auto.sapo.pt/"
+    },
+    "emails": {
+        "global": "https://auto.sapo.pt/",
+        "stand": "qts7@allcarsinone.pt",
+        "user": "andrerafael112@gmail.com"
     }
 }

@@ -1,54 +1,55 @@
-const config = require("../../test-config.json").loginUtilizador;
+const config = require("../../test-config.json").emails;
 
 const { test, expect } = require('@playwright/test');
 
-export default function loginTests() {
-	test.describe('Login Form Tests', () => {
-	test.use({ storageState: 'cookies.json' });
+export default function loginTests(email) {
+	test.describe('Login Form Tests' + email, () => {
+		test.use({ storageState: 'cookies.json' });
 
-	  test('should successfully log in with valid credentials', async ({ page }) => {
-		
-		await page.goto(config.global);
+		test('should successfully log in with valid credentials', async ({ page }) => {
 
-		const loginBtn = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button')
+			await page.goto(config.global);
 
-		if (loginBtn.isVisible) {
-		    await loginBtn.click()
-		}
+			const loginBtn = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button')
 
-		const emailInput = page.locator('//*[@id="username"]')
-		if (emailInput.isVisible) {
-		    emailInput.fill(config.tests[0].email);
-		}
+			if (loginBtn.isVisible) {
+				await loginBtn.click()
+			}
 
-		const continueBtn = page.locator('//*[@id="submit-username"]')
-		if (continueBtn.isVisible) {
-		    await continueBtn.click()
-		}
+			const emailInput = page.locator('//*[@id="username"]')
+			if (emailInput.isVisible) {
+				emailInput.fill(email);
+			}
 
-		const humanInput = page.locator('//*[@id="form-hCaptcha"]/div')
-		if (humanInput.isVisible) {
-		    await page.pause();
-		}
+			const continueBtn = page.locator('//*[@id="submit-username"]')
+			if (continueBtn.isVisible) {
+				await continueBtn.click()
+			}
 
-		const validInput = page.locator('//*[@id="token"]')
-		if (validInput.isVisible) {
-		    await page.pause();
-		}
+			const humanInput = page.locator('//*[@id="form-hCaptcha"]/div')
+			if (humanInput.isVisible) {
+				await page.pause();
+			}
 
-		const continueValidBtn = page.locator('//*[@id="btn-token-submit"]')
-		if (continueValidBtn.isVisible && continueValidBtn.isEnabled ) {
-		    await continueValidBtn.click()
-		}
-		
-		const continueImageWait = page.locator('//*[@id="content"]/header/div')
-		if (continueImageWait.isVisible) {
-		    await page.waitForTimeout(1500)
-		}
+			const validInput = page.locator('//*[@id="current-password"]')
+			if (validInput.isVisible()) {
+				validInput.fill("8h![RW5£F?1C");
+			}
 
-		const isLoggedIn = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/a/span');
-		const textOla = (await isLoggedIn.textContent()).trim();
-		await expect(textOla).toContain('Olá');
-	  });
+			const continueValidBtn = page.locator('//*[@id="btn-pwd-submit"]')
+			if (continueValidBtn.isVisible() && continueValidBtn.isEnabled()) {
+				await continueValidBtn.click()
+			}
+
+			const continueImageWait = page.locator('//*[@id="content"]/header/div')
+			if (continueImageWait.isVisible()) {
+				await page.waitForTimeout(1500)
+			}
+
+			const isLoggedIn = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/a/span');
+			const textOla = (await isLoggedIn.textContent()).trim();
+			await context.storageState({ path: `${process.cwd()}/${email.replace('@', '_')}.json` });
+			await expect(textOla).toContain('Olá');
+		});
 	});
 };

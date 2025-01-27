@@ -21,19 +21,13 @@ function generatePassword() {
 
 export default function registarUtilizador() {
   describe('User register', () => {
-  
-	test.use({ storageState: 'cookies.json' });
+
+    test.use({ storageState: 'cookies.json' });
 
     test('should register an user', async ({ context }) => {
       page = await context.newPage();
       await page.goto(config.global);
-      await page.waitForTimeout(5000);
 
-      const cookieScreen = page.locator('//*[@id="qc-cmp2-ui"]');
-      if (await cookieScreen.isVisible()) {
-        const acceptCookies = page.locator('//*[@id="qc-cmp2-ui"]/div[2]/div/button[3]');
-        await acceptCookies.click();
-      }
       const buttonRegister = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button');
       if (await buttonRegister.isVisible()) {
         await buttonRegister.click();
@@ -71,7 +65,7 @@ export default function registarUtilizador() {
       const password = page.locator('//*[@id="current-password"]');
       const confirmPassword = page.locator('//*[@id="new-password"]');
 
-      const passwordRegister = generatePassword();
+      const passwordRegister = "8h![RW5£F?1C";
       await password.fill(passwordRegister);
       await confirmPassword.fill(passwordRegister + '1'); // Botão não atualiza automaticamente, necessário apagar 1 caracter e dar tab
 
@@ -87,7 +81,7 @@ export default function registarUtilizador() {
       await buttonContinue.click();
 
 
-      const acceptConditions = page.locator('//*[@id="user"]/section/div/div/section/div/form/fieldset[2]/div[1]/ul/li/label');
+      const acceptConditions = page.locator('//*[@id="user"]/section/div/div/section/div/form/fieldset[2]/div[1]/ul/li/label/span');
       await acceptConditions.click();
 
       const saveConditions = page.locator('//*[@id="user"]/section/div/div/section/div/form/div/div/button[2]');
@@ -105,6 +99,7 @@ export default function registarUtilizador() {
 
     test('should not register an user because passwords doesnt have the min requirements', async ({ context }) => {
 
+      page = await context.newPage();
       await page.goto(config.global);
 
       const buttonRegister = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button');
@@ -164,6 +159,7 @@ export default function registarUtilizador() {
 
     test('should not register an user because passwords are different', async ({ context }) => {
 
+      page = await context.newPage();
       await page.goto(config.global);
 
       const buttonRegister = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button');
@@ -223,6 +219,8 @@ export default function registarUtilizador() {
 
     test('should register an user as a seller', async ({ context }) => {
 
+
+      page = await context.newPage();
       await page.goto(config.global);
 
       const buttonAnnounce = page.locator('//*[@id="navbarCollapse"]/ul/li[3]/a');
