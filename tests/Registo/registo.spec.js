@@ -23,7 +23,7 @@ export default function registarUtilizador() {
   describe('User register', () => {
 
     test.use({ storageState: 'qts7_allcarsinone.pt.json' });
-    /*
+
     test('should register an user', async ({ context }) => {
       page = await context.newPage();
       await page.goto(config.global);
@@ -216,7 +216,7 @@ export default function registarUtilizador() {
 
 
     });
-*/
+
     test('should register an user as a seller', async ({ context }) => {
 
       page = await context.newPage();
