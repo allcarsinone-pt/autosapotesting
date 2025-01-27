@@ -65,7 +65,7 @@ export default function contactTests() {
 			//await retomaBtn.click()
 
 			const human = page.locator('//*[@id="content"]')
-			if (human.isVisible()) {
+			if (await human.isVisible()) {
 				await page.pause();
 			}
 
