@@ -28,23 +28,22 @@ export default function loginTests(email) {
 			}
 
 			const humanInput = page.locator('//*[@id="form-hCaptcha"]/div')
-			if (humanInput.isVisible) {
+			if (humanInput.isVisible()) {
 				await page.pause();
 			}
 
-			const validInput = page.locator('//*[@id="current-password"]')
-			if (validInput.isVisible()) {
-				validInput.fill("8h![RW5£F?1C");
-				const continueValidBtn = page.locator('//*[@id="btn-pwd-submit"]')
+			const passwordInput = page.locator('//*[@id="current-password"]')
+			const tokenInput = page.locator('//*[@id="token"]')
+
+			if (passwordInput.isVisible() && !tokenInput.isVisible()) {
+				passwordInput.fill("8h![RW5£F?1C")
+				const continueValidBtn = page.locator('#btn-pwd-submit')
 				if (continueValidBtn.isVisible() && continueValidBtn.isEnabled()) {
 					await continueValidBtn.click()
 				}
-			} else {
-				const validInput = page.locator('//*[@id="token"]')
-				if (validInput.isVisible) {
-					await page.pause();
-				}
-				const continueValidBtn = page.locator('//*[@id="btn-token-submit"]')
+			} else if (tokenInput.isVisible()) {
+				await page.pause()
+				const continueValidBtn = page.locator('#btn-token-submit')
 				if (continueValidBtn.isVisible && continueValidBtn.isEnabled) {
 					await continueValidBtn.click()
 				}

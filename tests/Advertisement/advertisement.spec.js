@@ -7,7 +7,7 @@ let page, context;
 
 export default function createAdvertisement() {
     describe('Create car advertisement', () => {
-        test.use({ storageState: 'qts_allcarsinone.pt.json' });
+        test.use({ storageState: 'qts7_allcarsinone.pt.json' });
 
         test('should create a car ad', async ({ context }) => {
             page = await context.newPage();

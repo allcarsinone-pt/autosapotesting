@@ -53,8 +53,8 @@
                 "nif": "291099955",
                 "mobile": "912345678",
                 "billingAddress": "Rua do teste",
-                "postalCode1": 4750,
-                "postalCode2": 115,
+                "postalCode1": "4750",
+                "postalCode2": "115",
                 "locality": "Barcelos",
                 "district": "3",
                 "municipality": "2"

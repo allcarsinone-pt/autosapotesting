@@ -10,9 +10,9 @@ import { emails } from '../test-config.json';
 
 test.describe(acceptCookies);
 //test.describe(searchTests);
-//test.describe(registarUtilizador);
-test.describe(() => loginTests(emails.stand));
-test.describe(() => loginTests(emails.user));
+test.describe(registarUtilizador);
+//test.describe(() => loginTests(emails.stand));
+//test.describe(() => loginTests(emails.user));
 test.describe(createAdvertisement);
 test.describe(contactTests);
 test.describe(contactAnswerTests);
