@@ -35,13 +35,13 @@ export default function loginTests(email) {
 			const passwordInput = page.locator('//*[@id="current-password"]')
 			const tokenInput = page.locator('//*[@id="token"]')
 
-			if (passwordInput.isVisible() && !tokenInput.isVisible()) {
+			if ((await passwordInput.isVisible()) && !(await tokenInput.isVisible())) {
 				passwordInput.fill("8h![RW5£F?1C")
 				const continueValidBtn = page.locator('#btn-pwd-submit')
 				if (continueValidBtn.isVisible() && continueValidBtn.isEnabled()) {
 					await continueValidBtn.click()
 				}
-			} else if (tokenInput.isVisible()) {
+			} else if (await tokenInput.isVisible()) {
 				await page.pause()
 				const continueValidBtn = page.locator('#btn-token-submit')
 				if (await continueValidBtn.isVisible() && await continueValidBtn.isEnabled()) {

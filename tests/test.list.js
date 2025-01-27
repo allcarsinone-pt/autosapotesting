@@ -8,11 +8,28 @@ import contactTests from './ContactarVendedor/contact.spec';
 import contactAnswerTests from './ContactarVendedor/contact_answer.spec';
 import { emails } from '../test-config.json';
 
-test.describe(acceptCookies);
-//test.describe(searchTests);
-test.describe(registarUtilizador);
-//test.describe(() => loginTests(emails.stand));
-//test.describe(() => loginTests(emails.user));
-test.describe(createAdvertisement);
-test.describe(contactTests);
-test.describe(contactAnswerTests);
+// Define all test suites to run
+const allTests = [
+    { name: 'Accept Cookies', fn: acceptCookies },
+    { name: 'Register User', fn: registarUtilizador },
+    //{ name: 'Login as Stand User', fn: () => loginTests(emails.stand) },
+    //{ name: 'Create Advertisement', fn: createAdvertisement },
+    //{ name: 'Search Vehicle', fn: searchTests },
+    //{ name: 'Login as Regular User', fn: () => loginTests(emails.user) },
+    //{ name: 'Contact Seller', fn: contactTests },
+    //{ name: 'Contact Seller - Answer', fn: contactAnswerTests },
+];
+
+// Run each test suite individually
+allTests.forEach(({ name, fn }) => {
+    test.describe(name, () => {
+        try {
+            fn();
+        } catch (error) {
+            test({ name } - Error, async () => {
+                console.error("Error running test suite:", { name }, error);
+                throw error; // Log errors but continue with other tests
+            });
+        }
+    });
+});

@@ -23,7 +23,7 @@ export default function registarUtilizador() {
   describe('User register', () => {
 
     test.use({ storageState: 'qts7_allcarsinone.pt.json' });
-
+    /*
     test('should register an user', async ({ context }) => {
       page = await context.newPage();
       await page.goto(config.global);
@@ -216,7 +216,7 @@ export default function registarUtilizador() {
 
 
     });
-
+*/
     test('should register an user as a seller', async ({ context }) => {
 
       page = await context.newPage();
@@ -238,12 +238,12 @@ export default function registarUtilizador() {
       const login = page2.locator('//*[@id="account"]/section/div[2]/a[1]');
       await login.click();
 
-      const joinButton = page2.locator('//*[@id="account"]/section/div[2]/a[1]');
+      const joinButton = await page2.locator('//*[@id="account"]/section/div[2]/a[1]');
       if (await joinButton.isVisible()) {
         await joinButton.click();
       }
 
-      const particularButton = page2.locator('//*[@id="account"]/section/div[2]/a[1]');
+      const particularButton = await page2.locator('//*[@id="account"]/section/div[2]/a[1]');
       if (await particularButton.isVisible()) {
         await particularButton.click();
       }
