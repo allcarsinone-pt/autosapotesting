@@ -201,7 +201,7 @@ export default function searchTests() {
 
         })
 
-        /*
+
         test("should not return a list of car with some name and with a price filter if from filter is 0 and to filter is 0", async ({ context }) => {
 
             //AVISO: este teste é suposto falhar
@@ -301,7 +301,7 @@ export default function searchTests() {
             await page.close()
 
         })
-            */
+
     })
 }
 

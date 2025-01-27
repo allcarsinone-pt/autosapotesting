@@ -10,6 +10,7 @@ import { emails } from '../test-config.json';
 
 const allTests = [
     { name: 'Accept Cookies', fn: acceptCookies },
+    { name: 'Search Vehicle', fn: searchTests },
     { name: 'Register User', fn: registarUtilizador },
     { name: 'Login as Stand User', fn: () => loginTests(emails.stand) },
     { name: 'Create Advertisement', fn: createAdvertisement },

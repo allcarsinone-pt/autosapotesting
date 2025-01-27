@@ -21,7 +21,6 @@ export default function createAdvertisement() {
             await page.waitForTimeout(2000);
             let pages = await context.pages();
 
-
             const page2 = pages[1];
             await page2.bringToFront();
             await page2.waitForTimeout(2000);
@@ -362,5 +361,4 @@ export default function createAdvertisement() {
 
         });
     });
-
 }
