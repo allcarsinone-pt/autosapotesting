@@ -18,17 +18,17 @@ export default function loginTests(email) {
 			}
 
 			const emailInput = page.locator('//*[@id="username"]')
-			if (emailInput.isVisible) {
-				emailInput.fill(email);
+			if (await emailInput.isVisible()) {
+				await emailInput.fill(email);
 			}
 
 			const continueBtn = page.locator('//*[@id="submit-username"]')
-			if (continueBtn.isVisible) {
+			if (continueBtn.isVisible()) {
 				await continueBtn.click()
 			}
 
 			const humanInput = page.locator('//*[@id="form-hCaptcha"]/div')
-			if (humanInput.isVisible()) {
+			if (await humanInput.isVisible()) {
 				await page.pause();
 			}
 
