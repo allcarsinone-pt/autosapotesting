@@ -235,7 +235,7 @@ export default function registarUtilizador() {
       const page2 = pages[1];
       await page2.bringToFront();
       await page2.waitForTimeout(2000);
-      const login = page2.locator('//*[@id="account"]/section/div[2]/a[1]');
+      const login = await page2.locator('//*[@id="account"]/section/div[2]/a[1]');
       await login.click();
 
       const joinButton = await page2.locator('//*[@id="account"]/section/div[2]/a[1]');
@@ -258,12 +258,12 @@ export default function registarUtilizador() {
       let municipality = page2.locator('//*[@id="IdCounty"]');
       let acceptTermsAndConditions = page2.locator('//*[@id="account"]/section/div[2]/section/form/div[1]/ul/li/label/span')
 
-      NIFInput.fill(config.tests[3].nif);
-      mobileInput.fill(config.tests[3].mobile);
-      billingAddress.fill(config.tests[3].billingAddress);
-      postalCode1.fill(config.tests[3].postalCode1);
-      postalCode2.fill(config.tests[3].postalCode2);
-      locality.fill(config.tests[3].locality);
+      await NIFInput.fill(config.tests[3].nif);
+      await mobileInput.fill(config.tests[3].mobile);
+      await billingAddress.fill(config.tests[3].billingAddress);
+      await postalCode1.fill(config.tests[3].postalCode1);
+      await postalCode2.fill(config.tests[3].postalCode2);
+      await locality.fill(config.tests[3].locality);
       let districtValue = config.tests[3].district;
       await district.selectOption({ value: districtValue });
       let municipalityValue = config.tests[3].municipality;

@@ -26,6 +26,7 @@ export default function createAdvertisement() {
             await page2.bringToFront();
             await page2.waitForTimeout(2000);
             const login = page2.locator('//*[@id="account"]/section/div[2]/a[1]');
+                                    
             await login.click();
 
             const newAd = page2.locator('//*[@id="app"]/div[2]/header/div/div/div[3]/nav/ul/li[1]/a');
