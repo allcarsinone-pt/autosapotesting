@@ -9,6 +9,7 @@ export default function loginTests(email) {
 		test('should successfully log in with valid credentials', async ({ page }) => {
 
 			await page.goto(config.global);
+			const context = page.context();
 
 			const loginBtn = page.locator('//*[@id="navbarCollapse"]/ul/li[6]/button')
 
@@ -34,12 +35,22 @@ export default function loginTests(email) {
 			const validInput = page.locator('//*[@id="current-password"]')
 			if (validInput.isVisible()) {
 				validInput.fill("8h![RW5£F?1C");
+				const continueValidBtn = page.locator('//*[@id="btn-pwd-submit"]')
+				if (continueValidBtn.isVisible() && continueValidBtn.isEnabled()) {
+					await continueValidBtn.click()
+				}
+			} else {
+				const validInput = page.locator('//*[@id="token"]')
+				if (validInput.isVisible) {
+					await page.pause();
+				}
+				const continueValidBtn = page.locator('//*[@id="btn-token-submit"]')
+				if (continueValidBtn.isVisible && continueValidBtn.isEnabled) {
+					await continueValidBtn.click()
+				}
 			}
 
-			const continueValidBtn = page.locator('//*[@id="btn-pwd-submit"]')
-			if (continueValidBtn.isVisible() && continueValidBtn.isEnabled()) {
-				await continueValidBtn.click()
-			}
+
 
 			const continueImageWait = page.locator('//*[@id="content"]/header/div')
 			if (continueImageWait.isVisible()) {
