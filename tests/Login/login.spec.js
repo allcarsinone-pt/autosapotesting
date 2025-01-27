@@ -44,7 +44,7 @@ export default function loginTests(email) {
 			} else if (tokenInput.isVisible()) {
 				await page.pause()
 				const continueValidBtn = page.locator('#btn-token-submit')
-				if (continueValidBtn.isVisible && continueValidBtn.isEnabled) {
+				if (await continueValidBtn.isVisible() && await continueValidBtn.isEnabled()) {
 					await continueValidBtn.click()
 				}
 			}
